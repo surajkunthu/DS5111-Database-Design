@@ -1,8 +1,9 @@
 
 {{ config(materialized='view') }}
 
-SELECT 
-FROM courses
-WHERE active = FALSE
+SELECT mnemonic, term 
+FROM assignments
+GROUP BY mnemonic, term
+HAVING COUNT(instructor_id) > 1
 
 
